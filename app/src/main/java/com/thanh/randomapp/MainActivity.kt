@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.core.view.get
 import com.thanh.random.RandomComponent
+import com.thanh.random.arrayRandomEm
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +18,10 @@ class MainActivity : AppCompatActivity() {
 
     fun createComponent(): RandomComponent {
         val m = RandomComponent(this)
-        val layout = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+        val layout = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
         m.layoutParams = layout
         return m
     }
@@ -48,11 +52,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun startRandom(v:View){
-        val n = countComponent() -1
-        for (i in 0..n){
+    var Arraytmp = ArrayList<String>()
+    fun startRandom(v: View) {
+        val n = countComponent() - 1
+        for (i in 0..n) {
             val compo = parentrandom.get(i) as RandomComponent
-            compo.random()
+            val keep = compo.random()
+            if (haveOpposite.isChecked) {
+            }
         }
     }
 }

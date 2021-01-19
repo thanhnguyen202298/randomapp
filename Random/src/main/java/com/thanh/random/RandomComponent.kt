@@ -20,33 +20,33 @@ class RandomComponent @JvmOverloads constructor(
         LayoutInflater.from(context).inflate(R.layout.random_content, this, true)
     }
 
-    fun onRandomNumber() {
+    fun onRandomNumber():Int {
         val res = random.nextInt(10)
         titletxt.text = "$res"
+        return res
     }
 
-    fun onRandomWord(inRange: ArrayList<String> = ArrayList()):String {
-        var alpha = ""
+    fun onRandomWord(inRange: ArrayList<String> = ArrayList()):Int {
+        var res = 0
         if (inRange.size == 0) {
-            val res = random.nextInt(25)
-            alpha = arrayRandomAlpha[res]
+            res = random.nextInt(25)
+            val alpha = arrayRandomAlpha[res]
             titletxt.text = "$alpha"
         } else {
             val size = inRange.size
-            val res = random.nextInt(size - 1)
-            alpha = inRange[res]
+            res = random.nextInt(size - 1)
+            val alpha = inRange[res]
             titletxt.text = "$alpha"
         }
-        return alpha
+        return res
     }
 
-    fun random(inRange: ArrayList<String> = ArrayList()):String {
+    fun random(inRange: ArrayList<String> = ArrayList()):Int {
         val isNumber = radioNumber.isChecked
-        if (isNumber)
+        return if (isNumber)
             onRandomNumber()
         else
-            return onRandomWord(inRange)
-        return ""
+             onRandomWord(inRange)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
