@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.core.view.get
 import com.thanh.random.RandomComponent
+import com.thanh.random.arrayRandomAlpha
 import com.thanh.random.arrayRandomEm
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -73,7 +74,7 @@ class MainActivity : AppCompatActivity() {
     fun opposite(index: Int) {
         val c = arrayRandomEm[index]
         val seps = c.split("").filter { it.isNotEmpty() }
-        val n = seps.size - 1
+        var n = seps.size - 1
         Arraytmp = arrayRandomEm.filter {
             var y = false
             for (i in 0..n) {
@@ -83,6 +84,14 @@ class MainActivity : AppCompatActivity() {
             y
         }
 
+        n = Arraytmp.size-1
+        val tmplist = ArrayList<String>()
+        for (i in 0..n){
+            val a = arrayRandomEm.indexOf(Arraytmp[i])
+            tmplist.add(arrayRandomAlpha[a])
+        }
+
+        Arraytmp = tmplist
 
     }
 }
