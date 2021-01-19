@@ -52,14 +52,37 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    var Arraytmp = ArrayList<String>()
+    var Arraytmp: List<String> = ArrayList()
+
     fun startRandom(v: View) {
         val n = countComponent() - 1
         for (i in 0..n) {
             val compo = parentrandom.get(i) as RandomComponent
-            val keep = compo.random()
-            if (haveOpposite.isChecked) {
-            }
+            if (haveOpposite.isChecked && (i == 2 || i == n)) {
+                if (Arraytmp.size > 0)
+                    compo.random(Arraytmp as ArrayList<String>)
+                else compo.random()
+            } else if (haveOpposite.isChecked && (i == 0)) {
+                opposite(compo.random())
+            } else
+                compo.random()
+
         }
+    }
+
+    fun opposite(index: Int) {
+        val c = arrayRandomEm[index]
+        val seps = c.split("").filter { it.isNotEmpty() }
+        val n = seps.size - 1
+        Arraytmp = arrayRandomEm.filter {
+            var y = false
+            for (i in 0..n) {
+                y = it.contains(seps[i])
+                if (y) break
+            }
+            y
+        }
+
+
     }
 }

@@ -33,10 +33,19 @@ class RandomComponent @JvmOverloads constructor(
             val alpha = arrayRandomAlpha[res]
             titletxt.text = "$alpha"
         } else {
-            val size = inRange.size
-            res = random.nextInt(size - 1)
-            val alpha = inRange[res]
-            titletxt.text = "$alpha"
+            val size = inRange.size -1
+            if (size>0)
+            {
+                res = random.nextInt(size)
+                val alpha = inRange[res]
+                titletxt.text = "$alpha"
+            }
+            else
+            {
+                res = random.nextInt(25)
+                val alpha = arrayRandomAlpha[res]
+                titletxt.text = "$alpha"
+            }
         }
         return res
     }
