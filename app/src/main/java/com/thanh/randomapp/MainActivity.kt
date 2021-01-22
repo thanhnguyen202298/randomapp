@@ -32,11 +32,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun clickApplyNumber(v: View) {
-        val n = numkey.text.toString().toInt()
-        val m = n - countComponent()
-        if (m < 0)
-            decreaseView(Math.abs(m))
-        else increaseView(m)
+        val n = numkey.text.toString().toInt() - 1
+        parentrandom.removeAllViews()
+        increaseView(n)
     }
 
     fun decreaseView(n: Int) {
@@ -84,9 +82,9 @@ class MainActivity : AppCompatActivity() {
             y
         }
 
-        n = Arraytmp.size-1
+        n = Arraytmp.size - 1
         val tmplist = ArrayList<String>()
-        for (i in 0..n){
+        for (i in 0..n) {
             val a = arrayRandomEm.indexOf(Arraytmp[i])
             tmplist.add(arrayRandomAlpha[a])
         }
